@@ -1,10 +1,13 @@
 import Html.App
-import Html
+
+import App.View exposing (view)
+import App.Update exposing (init, update)
+
 
 main =
   Html.App.program
-  { init = ("Hello World", Cmd.none)
-  , update = (\_ model -> (model, Cmd.none))
-  , view = (\model -> Html.text model)
+  { init = init
+  , update = update
+  , view = view
   , subscriptions = (\model -> Sub.none)
   }

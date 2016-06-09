@@ -6766,17 +6766,98 @@ var _elm_lang$html$Html_App$beginnerProgram = function (_p1) {
 };
 var _elm_lang$html$Html_App$map = _elm_lang$virtual_dom$VirtualDom$map;
 
+var _user$project$Child_Model$Model = function (a) {
+	return {value: a};
+};
+
+var _user$project$Parent_Model$Model = function (a) {
+	return {children: a};
+};
+
+var _user$project$App_Update$init = {
+	ctor: '_Tuple2',
+	_0: _user$project$Parent_Model$Model(
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Child_Model$Model('hello world')
+			])),
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+var _user$project$App_Update$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+	});
+var _user$project$App_Update$Noop = {ctor: 'Noop'};
+
+var _user$project$Child_View$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text(model.value)
+			]));
+};
+
+var _user$project$Parent_View$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		A2(_elm_lang$core$List$map, _user$project$Child_View$view, model.children));
+};
+
+var _user$project$App_View$footerView = A2(
+	_elm_lang$html$Html$footer,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$small,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Footer')
+				]))
+		]));
+var _user$project$App_View$headerView = A2(
+	_elm_lang$html$Html$header,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$h1,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Header')
+				]))
+		]));
+var _user$project$App_View$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$main$,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$App_View$headerView,
+				_user$project$Parent_View$view(model),
+				_user$project$App_View$footerView
+			]));
+};
+
 var _user$project$Main$main = {
 	main: _elm_lang$html$Html_App$program(
 		{
-			init: {ctor: '_Tuple2', _0: 'Hello World', _1: _elm_lang$core$Platform_Cmd$none},
-			update: F2(
-				function (_p0, model) {
-					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-				}),
-			view: function (model) {
-				return _elm_lang$html$Html$text(model);
-			},
+			init: _user$project$App_Update$init,
+			update: _user$project$App_Update$update,
+			view: _user$project$App_View$view,
 			subscriptions: function (model) {
 				return _elm_lang$core$Platform_Sub$none;
 			}
