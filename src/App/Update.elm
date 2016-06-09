@@ -1,15 +1,14 @@
-module App.Update exposing (update, init)
+module App.Update exposing (init, update)
 
+import Parent.Update
 import Parent.Model as Parent
 import Child.Model as Child
 
-type Msg = Noop
+update = Parent.Update.update
 
-update : Msg -> Parent.Model -> (Parent.Model, Cmd Msg)
-update msg model =
-  case msg of
-    Noop -> (model, Cmd.none)
-
-init : (Parent.Model, Cmd Msg)
+init : (Parent.Model, Cmd Parent.Update.Msg)
 init =
-  (Parent.Model [Child.Model "hello world"], Cmd.none)
+  let child = Child.Model "hello world"
+      parent = Parent.Model child
+  in
+     (parent, Cmd.none)

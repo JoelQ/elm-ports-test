@@ -6,7 +6,13 @@
   </head>
 
   <body>
+    <script src="fakeCKEditor.js"></script>
     <script src="main.js"></script>
-    <script>Elm.Main.fullscreen()</script>
+    <script>
+      var app = Elm.Main.fullscreen()
+      app.ports.cKEditor.subscribe(function(str) {
+        console.log(str);
+      });
+    </script>
   </body>
 </html>

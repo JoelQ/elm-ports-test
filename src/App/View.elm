@@ -2,9 +2,10 @@ module App.View exposing(view)
 
 import Parent.View as Parent
 import Parent.Model exposing (Model)
+import Parent.Update
 import Html exposing(..)
 
-view : Model -> Html a
+view : Model -> Html Parent.Update.Msg
 view model =
   main'
   []
